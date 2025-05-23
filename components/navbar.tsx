@@ -19,7 +19,7 @@ export default async function Navbar() {
 
   return (
     <nav className="bg-background p-4 border-b">
-      <div className="max-w-5xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
         <h2 className="flex items-center gap-1 text-base sm:text-lg font-semibold">
           <ShoppingBasket />
           <Link href={"/"}>Shop</Link>
@@ -41,7 +41,7 @@ export default async function Navbar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               {dropDownLinks.map((ctx) => (
-                <DropdownMenuItem>
+                <DropdownMenuItem key={ctx.name}>
                   <Link href={ctx.href}>{ctx.name}</Link>
                 </DropdownMenuItem>
               ))}
