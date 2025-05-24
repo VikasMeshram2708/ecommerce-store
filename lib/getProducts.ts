@@ -16,3 +16,10 @@ export async function getCategories(): Promise<string[]> {
   if (!res.ok) undefined;
   return res.json();
 }
+
+// fetch the single product
+export async function getSingleProduct(id: string) {
+  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+  if (!res.ok) undefined;
+  return res.json();
+}

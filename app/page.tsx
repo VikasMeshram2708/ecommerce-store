@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { getCategories, getProducts } from "@/lib/getProducts";
 import Image from "next/image";
 import Header from "@/components/home/header";
+import Link from "next/link";
 
 type HomeProps = {
   searchParams: Promise<{
@@ -36,8 +37,8 @@ export default async function Home({ searchParams }: HomeProps) {
                     className="w-32 h-32 object-contain mb-4"
                     priority
                   />
-                  <CardTitle className="text-center line-clamp-2 mb-2 text-sm font-semibold">
-                    {product.title}
+                  <CardTitle className="text-center hover:underline hover:underline-offset-4 line-clamp-2 mb-2 text-sm font-semibold">
+                    <Link href={`/${product?.id}`}>{product.title}</Link>
                   </CardTitle>
                 </CardContent>
                 <CardFooter className="flex items-center justify-between">

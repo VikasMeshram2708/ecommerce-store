@@ -26,34 +26,38 @@ export default async function Navbar() {
         </h2>
         <div className="flex items-center gap-4">
           <ShoppingCart />
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Avatar>
-                <AvatarImage
-                  src={
-                    user?.imageUrl ??
-                    `https://ui-avatars.com/api/?name=${user?.fullName}`
-                  }
-                  alt={user?.fullName ?? "User"}
-                />
-                <AvatarFallback>{user?.fullName?.charAt(0)}</AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {dropDownLinks.map((ctx) => (
-                <DropdownMenuItem key={ctx.name}>
-                  <Link href={ctx.href}>{ctx.name}</Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
           {userId ? (
-            <SignOutButton>
-              <Button variant={"destructive"}>
-                <LogOut />
-                Logout
-              </Button>
-            </SignOutButton>
+            <>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Avatar>
+                    <AvatarImage
+                      src={
+                        user?.imageUrl ??
+                        `https://ui-avatars.com/api/?name=${
+                          user?.fullName ?? "Anonymous"
+                        }`
+                      }
+                      alt={user?.fullName ?? "User"}
+                    />
+                    <AvatarFallback>{user?.fullName?.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  {dropDownLinks.map((ctx) => (
+                    <DropdownMenuItem key={ctx.name}>
+                      <Link href={ctx.href}>{ctx.name}</Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <SignOutButton>
+                <Button variant={"destructive"}>
+                  <LogOut />
+                  Logout
+                </Button>
+              </SignOutButton>
+            </>
           ) : (
             <>
               <SignInButton>
