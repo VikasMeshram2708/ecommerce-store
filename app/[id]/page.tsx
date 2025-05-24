@@ -1,20 +1,51 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowLeft, IndianRupee, Star } from "lucide-react";
-import { getSingleProduct } from "@/lib/getProducts";
+import { getProducts, getSingleProduct } from "@/lib/getProducts";
 import Image from "next/image";
-import QuantityBtn from "@/components/product/quantity-btn";
-import AddToCartBtn from "@/components/product/add-to-cart-btn";
 import { notFound } from "next/navigation";
+import CartCta from "@/components/product/cart-cta";
+import { Metadata } from "next";
 
 type DetailedPageProps = {
   params: Promise<{ id: string }>;
 };
 
+// Metadata
+export async function generateMetadata({
+  params,
+}: DetailedPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const product = await getSingleProduct(id);
+
+  return {
+    title: product?.title,
+    description: product?.description,
+    openGraph: {
+      title: product?.title,
+      description: product?.description,
+      url: `https://example.com/products/${id}`,
+      images: [
+        {
+          url: product?.image,
+        },
+      ],
+    },
+  };
+}
+
+// SSG
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products?.map((product) => ({
+    id: product?.id.toString(),
+  }));
+}
+
 export default async function DetailedPage({ params }: DetailedPageProps) {
   const { id } = await params;
   const product = await getSingleProduct(id);
-  console.log("product", product);
+  // console.log("product", product);
 
   if (!product) {
     notFound();
@@ -53,7 +84,7 @@ export default async function DetailedPage({ params }: DetailedPageProps) {
               height={512}
               src={product?.image}
               alt={product?.title}
-              className="object-contain max-h-full max-w-full"
+              className="object-contain w-auto h-auto"
               priority
             />
           </div>
@@ -82,8 +113,7 @@ export default async function DetailedPage({ params }: DetailedPageProps) {
               </span>
             </div>
 
-            <AddToCartBtn />
-            <QuantityBtn />
+            <CartCta product={product} />
           </div>
         </div>
       </div>

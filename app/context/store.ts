@@ -1,37 +1,36 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+// import { create } from "zustand";
+// import { createJSONStorage, persist } from "zustand/middleware";
 
-interface StoreState {
-  totalProducts: number;
-  increaseQuantity: () => void;
-  decreaseQuantity: () => void;
-}
-export const useStore = create<StoreState>()(
-  persist(
-    (set) => ({
-      totalProducts: 1,
-      increaseQuantity: () =>
-        set((state) => ({ totalProducts: state.totalProducts + 1 })),
-      decreaseQuantity: () =>
-        set((state) =>
-          state.totalProducts > 0
-            ? { totalProducts: state.totalProducts - 1 }
-            : state
-        ),
-    }),
-    {
-      name: "cart-storage",
-    }
-  )
-);
-// export const useStore = create<StoreState>((set) => ({
-//   totalProducts: 0,
-//   increaseQuantity: () =>
-//     set((state) => ({ totalProducts: state.totalProducts + 1 })),
-//   decreaseQuantity: () =>
-//     set((state) =>
-//       state.totalProducts > 0
-//         ? { totalProducts: state.totalProducts - 1 }
-//         : state
-//     ),
-// }));
+// interface StoreState {
+//   totalProducts: number;
+//   increaseQuantity: () => void;
+//   decreaseQuantity: () => void;
+//   clearCart: () => void;
+// }
+
+// export const useStore = create<StoreState>()(
+//   persist(
+//     (set, get) => ({
+//       totalProducts: 1,
+//       cartItems: [],
+
+//       increaseQuantity: () =>
+//         set((state) => ({ totalProducts: state.totalProducts + 1 })),
+
+//       decreaseQuantity: () =>
+//         set((state) => ({
+//           totalProducts: Math.max(1, state.totalProducts - 1),
+//         })),
+
+//       clearCart: () => {
+//         set({
+//           totalProducts: 1,
+//         });
+//       },
+//     }),
+//     {
+//       name: "cart-storage",
+//       storage: createJSONStorage(() => localStorage),
+//     }
+//   )
+// );

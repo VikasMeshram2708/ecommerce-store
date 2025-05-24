@@ -1211,6 +1211,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     email: string | null
+    tenantId: string | null
     password: string | null
     picture: string | null
     role: $Enums.UserRole | null
@@ -1222,6 +1223,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     email: string | null
+    tenantId: string | null
     password: string | null
     picture: string | null
     role: $Enums.UserRole | null
@@ -1233,6 +1235,7 @@ export namespace Prisma {
     id: number
     name: number
     email: number
+    tenantId: number
     password: number
     picture: number
     role: number
@@ -1246,6 +1249,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
+    tenantId?: true
     password?: true
     picture?: true
     role?: true
@@ -1257,6 +1261,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
+    tenantId?: true
     password?: true
     picture?: true
     role?: true
@@ -1268,6 +1273,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
+    tenantId?: true
     password?: true
     picture?: true
     role?: true
@@ -1352,6 +1358,7 @@ export namespace Prisma {
     id: string
     name: string
     email: string
+    tenantId: string
     password: string | null
     picture: string | null
     role: $Enums.UserRole
@@ -1380,6 +1387,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    tenantId?: boolean
     password?: boolean
     picture?: boolean
     role?: boolean
@@ -1396,6 +1404,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
+    tenantId?: boolean
     password?: boolean
     picture?: boolean
     role?: boolean
@@ -1403,7 +1412,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "picture" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "tenantId" | "password" | "picture" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     cartItem?: boolean | User$cartItemArgs<ExtArgs>
     order?: boolean | User$orderArgs<ExtArgs>
@@ -1420,6 +1429,7 @@ export namespace Prisma {
       id: string
       name: string
       email: string
+      tenantId: string
       password: string | null
       picture: string | null
       role: $Enums.UserRole
@@ -1822,6 +1832,7 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
+    readonly tenantId: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly picture: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
@@ -2486,7 +2497,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     ratingId: string
-    userId: string | null
+    userId: string
     _count: CartItemCountAggregateOutputType | null
     _avg: CartItemAvgAggregateOutputType | null
     _sum: CartItemSumAggregateOutputType | null
@@ -2566,7 +2577,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       ratingId: string
-      userId: string | null
+      userId: string
     }, ExtArgs["result"]["cartItem"]>
     composites: {}
   }
@@ -5474,6 +5485,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     email: 'email',
+    tenantId: 'tenantId',
     password: 'password',
     picture: 'picture',
     role: 'role',
@@ -5640,6 +5652,7 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
+    tenantId?: StringFilter<"User"> | string
     password?: StringNullableFilter<"User"> | string | null
     picture?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
@@ -5653,6 +5666,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    tenantId?: SortOrder
     password?: SortOrder
     picture?: SortOrder
     role?: SortOrder
@@ -5665,6 +5679,7 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    tenantId?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -5676,12 +5691,13 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     cartItem?: CartItemListRelationFilter
     order?: OrderListRelationFilter
-  }, "id" | "email">
+  }, "id" | "email" | "tenantId">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    tenantId?: SortOrder
     password?: SortOrder
     picture?: SortOrder
     role?: SortOrder
@@ -5699,6 +5715,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
+    tenantId?: StringWithAggregatesFilter<"User"> | string
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     picture?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
@@ -5721,7 +5738,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"CartItem"> | Date | string
     updatedAt?: DateTimeFilter<"CartItem"> | Date | string
     ratingId?: StringFilter<"CartItem"> | string
-    userId?: StringNullableFilter<"CartItem"> | string | null
+    userId?: StringFilter<"CartItem"> | string
     rating?: XOR<RatingScalarRelationFilter, RatingWhereInput>
     User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
@@ -5745,10 +5762,11 @@ export namespace Prisma {
 
   export type CartItemWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    skuId?: string
+    skuId_userId?: CartItemSkuIdUserIdCompoundUniqueInput
     AND?: CartItemWhereInput | CartItemWhereInput[]
     OR?: CartItemWhereInput[]
     NOT?: CartItemWhereInput | CartItemWhereInput[]
+    skuId?: StringFilter<"CartItem"> | string
     quantity?: IntFilter<"CartItem"> | number
     title?: StringFilter<"CartItem"> | string
     price?: FloatFilter<"CartItem"> | number
@@ -5758,10 +5776,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"CartItem"> | Date | string
     updatedAt?: DateTimeFilter<"CartItem"> | Date | string
     ratingId?: StringFilter<"CartItem"> | string
-    userId?: StringNullableFilter<"CartItem"> | string | null
+    userId?: StringFilter<"CartItem"> | string
     rating?: XOR<RatingScalarRelationFilter, RatingWhereInput>
     User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }, "id" | "skuId">
+  }, "id" | "skuId_userId">
 
   export type CartItemOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5798,7 +5816,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"CartItem"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"CartItem"> | Date | string
     ratingId?: StringWithAggregatesFilter<"CartItem"> | string
-    userId?: StringNullableWithAggregatesFilter<"CartItem"> | string | null
+    userId?: StringWithAggregatesFilter<"CartItem"> | string
   }
 
   export type RatingWhereInput = {
@@ -5924,6 +5942,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    tenantId: string
     password?: string | null
     picture?: string | null
     role?: $Enums.UserRole
@@ -5937,6 +5956,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    tenantId: string
     password?: string | null
     picture?: string | null
     role?: $Enums.UserRole
@@ -5949,6 +5969,7 @@ export namespace Prisma {
   export type UserUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
@@ -5961,6 +5982,7 @@ export namespace Prisma {
   export type UserUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
@@ -5974,6 +5996,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    tenantId: string
     password?: string | null
     picture?: string | null
     role?: $Enums.UserRole
@@ -5984,6 +6007,7 @@ export namespace Prisma {
   export type UserUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
@@ -5994,6 +6018,7 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
@@ -6028,7 +6053,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     ratingId: string
-    userId?: string | null
+    userId: string
   }
 
   export type CartItemUpdateInput = {
@@ -6056,7 +6081,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ratingId?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type CartItemCreateManyInput = {
@@ -6071,7 +6096,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     ratingId: string
-    userId?: string | null
+    userId: string
   }
 
   export type CartItemUpdateManyMutationInput = {
@@ -6097,7 +6122,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ratingId?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type RatingCreateInput = {
@@ -6287,6 +6312,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    tenantId?: SortOrder
     password?: SortOrder
     picture?: SortOrder
     role?: SortOrder
@@ -6298,6 +6324,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    tenantId?: SortOrder
     password?: SortOrder
     picture?: SortOrder
     role?: SortOrder
@@ -6309,6 +6336,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
+    tenantId?: SortOrder
     password?: SortOrder
     picture?: SortOrder
     role?: SortOrder
@@ -6407,6 +6435,11 @@ export namespace Prisma {
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
+  }
+
+  export type CartItemSkuIdUserIdCompoundUniqueInput = {
+    skuId: string
+    userId: string
   }
 
   export type CartItemCountOrderByAggregateInput = {
@@ -7077,7 +7110,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"CartItem"> | Date | string
     updatedAt?: DateTimeFilter<"CartItem"> | Date | string
     ratingId?: StringFilter<"CartItem"> | string
-    userId?: StringNullableFilter<"CartItem"> | string | null
+    userId?: StringFilter<"CartItem"> | string
   }
 
   export type OrderUpsertWithWhereUniqueWithoutUserInput = {
@@ -7131,6 +7164,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    tenantId: string
     password?: string | null
     picture?: string | null
     role?: $Enums.UserRole
@@ -7143,6 +7177,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    tenantId: string
     password?: string | null
     picture?: string | null
     role?: $Enums.UserRole
@@ -7191,6 +7226,7 @@ export namespace Prisma {
   export type UserUpdateWithoutCartItemInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
@@ -7202,6 +7238,7 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutCartItemInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
@@ -7235,7 +7272,7 @@ export namespace Prisma {
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: string | null
+    userId: string
   }
 
   export type CartItemCreateOrConnectWithoutRatingInput = {
@@ -7267,6 +7304,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    tenantId: string
     password?: string | null
     picture?: string | null
     role?: $Enums.UserRole
@@ -7279,6 +7317,7 @@ export namespace Prisma {
     id?: string
     name: string
     email: string
+    tenantId: string
     password?: string | null
     picture?: string | null
     role?: $Enums.UserRole
@@ -7306,6 +7345,7 @@ export namespace Prisma {
   export type UserUpdateWithoutOrderInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
@@ -7317,6 +7357,7 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutOrderInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    tenantId?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
@@ -7426,7 +7467,7 @@ export namespace Prisma {
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: string | null
+    userId: string
   }
 
   export type CartItemUpdateWithoutRatingInput = {
@@ -7452,7 +7493,7 @@ export namespace Prisma {
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type CartItemUncheckedUpdateManyWithoutRatingInput = {
@@ -7465,7 +7506,7 @@ export namespace Prisma {
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
 

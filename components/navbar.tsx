@@ -12,6 +12,8 @@ import {
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { dropDownLinks } from "@/data";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
+import CartItems from "./home/cart-items";
 
 export default async function Navbar() {
   const { userId } = await auth();
@@ -25,7 +27,15 @@ export default async function Navbar() {
           <Link href={"/"}>Shop</Link>
         </h2>
         <div className="flex items-center gap-4">
-          <ShoppingCart />
+          <Sheet>
+            <SheetTrigger>
+              <ShoppingCart />
+            </SheetTrigger>
+            <SheetContent>
+              <SheetTitle className="text-center">Checkout</SheetTitle>
+              <CartItems />
+            </SheetContent>
+          </Sheet>
           {userId ? (
             <>
               <DropdownMenu>

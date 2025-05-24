@@ -1,3 +1,5 @@
+import { Product } from "@/types";
+
 // fetch all the products
 export async function getProducts(category?: string): Promise<Product[]> {
   const url = category
@@ -18,7 +20,7 @@ export async function getCategories(): Promise<string[]> {
 }
 
 // fetch the single product
-export async function getSingleProduct(id: string) {
+export async function getSingleProduct(id: string): Promise<Product> {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`);
   if (!res.ok) undefined;
   return res.json();
